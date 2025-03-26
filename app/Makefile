@@ -15,3 +15,5 @@ run-dist:
 
 lint:
 	./gradlew check
+
+.PHONY: build
