@@ -34,7 +34,7 @@ tasks.jacocoTestReport { reports { xml.required.set(true) } }
 // Конфигурация плагина org.sonarqube
 sonar {
     properties {
-        property("sonar.projectKey", "rsyu_java-project-71")
+        property("sonar.projectKey", "Rsyu_java-project-71")
         property("sonar.organization", "rsyu")
         property("sonar.host.url", "https://sonarcloud.io")
     }
