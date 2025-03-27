@@ -2,19 +2,9 @@ plugins {
     id("java")
     id("com.github.ben-manes.versions") version "0.51.0"
     id("application")
+    id("org.sonarqube") version "6.0.1.5171"
     id("checkstyle")
-}
-
-checkstyle {
-    toolVersion = "10.12.3" // Укажите актуальную версию Checkstyle
-    configFile = file("${rootProject.projectDir}/config/checkstyle/checkstyle.xml")
-}
-
-tasks.withType<Checkstyle>().configureEach {
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
+    id ("jacoco")
 }
 application {
     mainClass.set("hexlet.code.App")
@@ -37,4 +27,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
+
+// Конфигурация плагина org.sonarqube
+sonar {
+    properties {
+        property("sonar.projectKey", "Rsyu_java-project-71")
+        property("sonar.organization", "rsyu")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
