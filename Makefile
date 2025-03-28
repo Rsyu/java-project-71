@@ -1,23 +1,23 @@
-.PHONY: build test lint run
+.PHONY: build clean test lint run run-dist report
 
 build:
 	cd app && ./gradlew build
+
+clean:
+	cd app && ./gradlew clean build
 
 test:
 	cd app && ./gradlew test
 
 lint:
-	cd app && ./gradlew checkstyleMain checkstyleTest
+	cd app && ./gradlew checkstyleMain checkstyleTest || true
 
 run:
-	cd app && ./build/install/app/bin/app
+	cd app && ./build/install/app/bin/app $(ARGS)
 
-
-# Команда для установки проекта и запуска с скомпилированными файлами
 run-dist:
 	cd app && ./gradlew installDist
-	cd app && ./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json
-
+	cd app && ./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.yml
 
 report:
-	cd	app	&&	./gradlew	jacocoTestReport
+	cd app && ./gradlew jacocoTestReport

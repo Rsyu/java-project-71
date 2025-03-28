@@ -4,29 +4,32 @@ import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Command;
-
 import java.util.concurrent.Callable;
 
-@Command(name = "gendiff", description = "Compares two configuration files and shows a difference.")
+@Command(
+        name = "gendiff",
+        description = "Compares two configuration files and shows a difference.",
+        mixinStandardHelpOptions = true, // Поддержка --help и --version
+        version = "gendiff 1.0"
+)
 public class App implements Callable<Integer> {
 
-    @Parameters(index = "0", description = "path to first file")
+    @Parameters(index = "0", description = "Path to first file", defaultValue = "")
     private String filepath1;
 
-    @Parameters(index = "1", description = "path to second file")
+    @Parameters(index = "1", description = "Path to second file", defaultValue = "")
     private String filepath2;
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]", defaultValue = "stylish")
+    @Option(names = {"-f", "--format"}, description = "Output format [default: stylish]", defaultValue = "stylish")
     private String format;
-
-    @Option(names = {"-h", "--help"}, description = "Show this help message and exit.", help = true)
-    private boolean helpRequested;
-
-    @Option(names = {"-V", "--version"}, description = "Print version information and exit.")
-    private boolean versionRequested;
 
     @Override
     public Integer call() {
+        if (filepath1.isEmpty() || filepath2.isEmpty()) {
+            System.err.println("Error: Both file paths must be provided.");
+            return 1;
+        }
+
         try {
             String diff = Differ.generate(filepath1, filepath2);
             System.out.println(diff);

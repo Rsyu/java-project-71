@@ -21,6 +21,8 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     implementation("info.picocli:picocli:4.7.4")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.0")
+    implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.0")
     testImplementation ("org.junit.jupiter:junit-jupiter-api") // API для JUnit
     testImplementation ("org.junit.jupiter:junit-jupiter-engine") // Движок для JUnit
     testRuntimeOnly ("org.junit.platform:junit-platform-launcher") // Платформа для запуска тестов
