@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Rsyu/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Rsyu/java-project-71/actions)  
 
-## Пример работы
+## Сравнение плоских файлов (JSON)
  https://asciinema.org/a/6jaQeaPLaQzLOmwuxxvQ7i6KE
 
 
@@ -12,6 +12,6 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Rsyu_java-project-71&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Rsyu_java-project-71)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Rsyu_java-project-71&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Rsyu_java-project-71)
 
-##Сравнение плоских файлов (yaml)
+## Сравнение плоских файлов (yaml)
  https://asciinema.org/a/BmdbiyshZPgaTvrPtKXrnOUbI
 
