@@ -21,7 +21,7 @@ class DifferTest {
                   - timeout: 50
                   + timeout: 20
                   + verbose: true
-                }""" ;
+                }""";
 
         // Генерация результата сравнения файлов
         String actualResult = Differ.generate(file1, file2);
@@ -45,7 +45,7 @@ class DifferTest {
                   - timeout: 50
                   + timeout: 20
                   + verbose: true
-                }""" ;
+                }""";
 
         // Генерация результата сравнения файлов
         String actualResult = Differ.generate(file1, file2);
