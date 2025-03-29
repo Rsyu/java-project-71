@@ -16,5 +16,6 @@
  https://asciinema.org/a/BmdbiyshZPgaTvrPtKXrnOUbI
 
 ## Обработка данных
- https://asciinema.org/a/m2Yu2gyS6DqKUYiRcl9jPpNvV
+  https://asciinema.org/a/czvqViQJWpeEWQXBtIC7GLWfR
+
 
