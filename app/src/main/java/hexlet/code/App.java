@@ -1,43 +1,45 @@
 package hexlet.code;
 
 import picocli.CommandLine;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Command;
-import java.util.concurrent.Callable;
+import picocli.CommandLine.Option;
 
-@Command(
-        name = "gendiff",
-        description = "Compares two configuration files and shows a difference.",
-        mixinStandardHelpOptions = true, // Поддержка --help и --version
-        version = "gendiff 1.0"
-)
-public class App implements Callable<Integer> {
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.List;
 
-    @Parameters(index = "0", description = "Path to first file", defaultValue = "")
-    private String filepath1;
+@Command(name = "app", mixinStandardHelpOptions = true, version = "1.0",
+        description = "Compare two files and generate a diff.")
+public class App implements Runnable {
 
-    @Parameters(index = "1", description = "Path to second file", defaultValue = "")
-    private String filepath2;
+    @Option(names = {"-f", "--format"}, description = "Output format")
+    private String format = "stylish"; // формат по умолчанию
 
-    @Option(names = {"-f", "--format"}, description = "Output format [default: stylish]", defaultValue = "stylish")
-    private String format;
+    @Option(names = {"-i", "--input1"}, required = true, description = "First input file")
+    private String file1;
+
+    @Option(names = {"-j", "--input2"}, required = true, description = "Second input file")
+    private String file2;
 
     @Override
-    public Integer call() {
-        if (filepath1.isEmpty() || filepath2.isEmpty()) {
-            System.err.println("Error: Both file paths must be provided.");
-            return 1;
-        }
-
+    public void run() {
         try {
-            String diff = Differ.generate(filepath1, filepath2);
-            System.out.println(diff);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            return 1;
+            // Чтение данных из файлов
+            Map<String, Object> file1Data = Parser.parse(file1);
+            Map<String, Object> file2Data = Parser.parse(file2);
+
+            // Генерация различий
+            List<DiffEntry> diff = Differ.generateDiff(file1Data, file2Data);
+
+            // Вывод дифа в стиле "stylish"
+            if (format.equals("stylish")) {
+                StylishFormatter.printStylish(diff);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return 0;
     }
 
     public static void main(String[] args) {

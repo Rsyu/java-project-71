@@ -17,7 +17,7 @@ run:
 
 run-dist:
 	cd app && ./gradlew installDist
-	cd app && ./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.yml
+	cd app && ./build/install/app/bin/app -i=src/test/resources/file1.json -j=src/test/resources/file2.yml
 
 report:
 	cd app && ./gradlew jacocoTestReport
