@@ -61,7 +61,7 @@ tasks.jacocoTestReport {
 
 sonar {
     properties {
-        property("sonar.projectKey", "Rsyu_java-project-712")
+        property("sonar.projectKey", "Rsyu_java-project-71")
         property("sonar.organization", "rsyu")
         property("sonar.host.url", "https://sonarcloud.io")
     }
