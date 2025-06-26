@@ -2,6 +2,9 @@ plugins {
     id("java")
     id("com.github.ben-manes.versions") version "0.51.0"
     id("application")
+    id("checkstyle")
+    id("jacoco")
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "hexlet.code"
@@ -15,6 +18,18 @@ repositories {
     mavenCentral()
 }
 
+checkstyle {
+    toolVersion = "10.25.0"
+    configFile = rootProject.file("config/checkstyle/checkstyle.xml")
+}
+
+tasks.withType<Checkstyle> {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+    }
+}
+
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -26,3 +41,29 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+jacoco {
+    toolVersion = "0.8.10"
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "Rsyu_java-project-71")
+        property("sonar.organization", "rsyu")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
+}
+
+
